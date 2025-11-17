@@ -9,7 +9,7 @@ import { Context } from "../Context/StateContext";
 const ToDoList = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [editValue, setEditValue] = useState("");
-  const [openDelete, setOpenDelete] = useState(false);
+  
 
   const context = useContext(Context);
   if (!context) return null;
@@ -22,6 +22,8 @@ const ToDoList = () => {
     openEdit,
     setOpenEdit,
     open,
+    openDelete, 
+    setOpenDelete
   } = context;
 
   const openEditModal = (index: number) => {

@@ -11,7 +11,9 @@ const App = () => {
           Wellcome To My Smartest <span className="text-green-900 font-bold text-6xl">ToDO</span> App
         </h1>
         
-        <ToDoInput/>
+        
+          <ToDoInput/>
+        
         
       </div>
       <ToDoList />

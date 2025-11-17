@@ -9,7 +9,7 @@ const ToDoInput = () => {
   const context = useContext(Context);
   if (!context) return null;
 
-  const { input, setInput } = context;
+  const { input, setInput, openEdit, openDelete } = context;
 
    const handleSubmit = () => {
     if (!input.trim()) {
@@ -22,8 +22,9 @@ const ToDoInput = () => {
   
   return (
     <div className="w-full flex items-center justify-center gap-2 ">
-      
-        <Box sx={{ width: 500, maxWidth: "100%", background: "white" }}>
+      {!openEdit && !openDelete && (
+         <div className="flex gap-2">
+          <Box sx={{ width: 500, maxWidth: "100%", background: "white" }}>
           <TextField
             fullWidth
             label="Enter Here What You want to Do NEXT"
@@ -46,7 +47,10 @@ const ToDoInput = () => {
         >
           Submit
         </Button>
+        </div>
      
+      )}
+       
     </div>
   );
 };

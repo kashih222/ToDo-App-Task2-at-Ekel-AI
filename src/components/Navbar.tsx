@@ -1,4 +1,3 @@
-// src/components/Navbar.tsx
 import { useContext } from "react";
 import { Context } from "../Context/StateContext";
 import { toast } from "react-toastify";
@@ -27,7 +26,7 @@ const Navbar = () => {
       <div>
         <button
           onClick={() => setOpen(true)}
-          className="bg-indigo-600 px-6 py-4 text-nowrap text-white font-bold rounded-md hover:bg-indigo-700 major-mono-display-regular"
+          className="bg-blue-600 px-6 py-4 text-nowrap text-white font-bold rounded-md hover:bg-blue-700 major-mono-display-regular"
         >
           Add Todo +
         </button>
@@ -56,9 +55,9 @@ const Navbar = () => {
 
               <button
                 onClick={handleSubmit}
-                className="px-4 py-1 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+                className="px-4 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700"
               >
-                Submit
+                Add+
               </button>
             </div>
           </div>

@@ -1,9 +1,11 @@
 import { createContext, useState, useEffect, type ReactNode } from "react";
+import { toast } from "react-toastify";
 
 export interface TodoItem {
   text: string;
   date: string;
   completed: boolean;
+  toast?: ReturnType<typeof toast>;
 }
 
 interface ContextProps {
@@ -18,6 +20,9 @@ interface ContextProps {
   setOpenEdit: React.Dispatch<React.SetStateAction<boolean>>;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  openDelete: boolean;
+  setOpenDelete: React.Dispatch<React.SetStateAction<boolean>>;
+  
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -34,6 +39,7 @@ const StateContext = ({ children }: { children: ReactNode }) => {
     const [openEdit, setOpenEdit] = useState(false);
 
     const [open, setOpen] = useState(false);
+    const [openDelete, setOpenDelete] = useState(false);
 
 
   useEffect(() => {
@@ -48,6 +54,7 @@ const StateContext = ({ children }: { children: ReactNode }) => {
       text,
       date: dateString,
       completed: false,
+      toast: toast.success("Todo Added Successfully!"),
     };
 
     setTodos([...todos, newTodo]);
@@ -57,9 +64,11 @@ const StateContext = ({ children }: { children: ReactNode }) => {
     const updated = [...todos];
     updated[index].text = newText;
     setTodos(updated);
+    toast.success("Todo Updated Successfully!");
   };
 
   const deleteTodo = (index: number) => {
+    toast.success("Todo Deleted Successfully!");
     setTodos(todos.filter((_, i) => i !== index));
   };
 
@@ -83,6 +92,8 @@ const StateContext = ({ children }: { children: ReactNode }) => {
         setOpenEdit,
         open,
         setOpen,
+        openDelete, 
+        setOpenDelete
       }}
     >
       {children}
