@@ -1,28 +1,52 @@
+import { useContext } from "react";
+import { Context } from "../Context/StateContext";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { useState } from "react";
+import { toast } from "react-toastify";
 
 const ToDoInput = () => {
-  const [input] = useState<string>("")
+  const context = useContext(Context);
+  if (!context) return null;
 
-  const  handleSbmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Submitted Input:", input);
-  }
+  const { input, setInput } = context;
+
+   const handleSubmit = () => {
+    if (!input.trim()) {
+      toast.error("Input cannot be empty!");
+      return;
+    }
+    context.addTodo(input);
+    setInput("");
+  };
+  
   return (
-    <div className="w-full flex items-center justify-center gap-2 px-10">
-      <form action="" className="flex  h-full items-center justify-center gap-2 px-10 lg:flex-col"
-      onSubmit={handleSbmit}
-      >
-        <Box sx={{ width: 500, maxWidth: "100%", background:"white" }}>
-        <TextField fullWidth label="Enter Here What You want to Do NEXT" id="fullWidth"
-        className="pr-22" />
-      </Box>
-      <Button sx={{ width: 100, maxWidth: "100%", background:"white", fontWeight:"bold" }}
-      className="h-full"
-      >Submit</Button>
-      </form>
+    <div className="w-full flex items-center justify-center gap-2 ">
+      
+        <Box sx={{ width: 500, maxWidth: "100%", background: "white" }}>
+          <TextField
+            fullWidth
+            label="Enter Here What You want to Do NEXT"
+            id="fullWidth"
+            className="pr-22"
+            value={input}
+              onChange={(e) => setInput(e.target.value)}
+          />
+        </Box>
+        <Button
+          sx={{
+            width: 100,
+            maxWidth: "100%",
+            background: "white",
+            fontWeight: "bold",
+            height: "55px",
+          }}
+          className="h-full"
+          onClick={handleSubmit}
+        >
+          Submit
+        </Button>
+     
     </div>
   );
 };

@@ -1,15 +1,13 @@
 // src/components/Navbar.tsx
-import {  useContext } from "react";
+import { useContext } from "react";
 import { Context } from "../Context/StateContext";
 import { toast } from "react-toastify";
 
 const Navbar = () => {
- 
-
   const context = useContext(Context);
   if (!context) return null;
 
-  const { input, setInput, addTodo, open, setOpen} = context;
+  const { input, setInput, addTodo, open, setOpen } = context;
 
   const handleSubmit = () => {
     if (!input.trim()) {
@@ -21,17 +19,19 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex h-[90px] w-full justify-between items-center bg-white shadow-md px-3 fixed top-0">
-      <div className="logo text-3xl font-bold p-4 text-black w-full text-start major-mono-display-regular">
+    <div className="flex h-[90px] w-full justify-between items-center bg-white shadow-md px-3 fixed top-0 z-50">
+      <div className="logo text-3xl font-bold  text-black  text-start major-mono-display-regular width-[200px]">
         TODO
       </div>
 
-      <button
-        onClick={() => setOpen(true)}
-        className="bg-indigo-600 px-6 py-4 text-nowrap text-white font-bold rounded-md hover:bg-indigo-700 major-mono-display-regular"
-      >
-        Add Todo +
-      </button>
+      <div>
+        <button
+          onClick={() => setOpen(true)}
+          className="bg-indigo-600 px-6 py-4 text-nowrap text-white font-bold rounded-md hover:bg-indigo-700 major-mono-display-regular"
+        >
+          Add Todo +
+        </button>
+      </div>
 
       {open && (
         <div className="fixed inset-0  backdrop-blur-sm flex items-center justify-center">

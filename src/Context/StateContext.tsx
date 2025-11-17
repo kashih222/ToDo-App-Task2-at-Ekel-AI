@@ -24,6 +24,7 @@ interface ContextProps {
 export const Context = createContext<ContextProps | null>(null);
 
 const StateContext = ({ children }: { children: ReactNode }) => {
+
   const [todos, setTodos] = useState<TodoItem[]>(() => {
     const stored = localStorage.getItem("todos");
     return stored ? JSON.parse(stored) : [];

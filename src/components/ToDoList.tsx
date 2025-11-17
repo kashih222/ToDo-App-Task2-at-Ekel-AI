@@ -2,7 +2,6 @@ import { useState, useContext } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-// import CardActionArea from "@mui/material/CardActionArea";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 import { Context } from "../Context/StateContext";
@@ -52,78 +51,73 @@ const ToDoList = () => {
 
   return (
     <div className="w-full flex p-10 relative">
-      {
-        !open && <div className="grid grid-cols-1 min-[300px]:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-        {todos.map((todo, index) => (
-          <div className=""key={index}>
-            <Card className="h-48" >
-            <div className="relative h-48  ">
-              <CardContent sx={{ height: "100%", width: "100%" }}>
-                <Typography component="div">
-                  <div className="flex items-center justify-between w-full">
-                    <span className="bg-gray-200 rounded text-2xl font-bold delius-swash-caps-regular">
-                      ToDo
-                    </span>
+      {!open && (
+        <div className="grid grid-cols-1 min-[300px]:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+          {todos.map((todo, index) => (
+            <div className="" key={index}>
+              <Card className="h-48">
+                <div className="relative h-48  ">
+                  <CardContent sx={{ height: "100%", width: "100%" }}>
+                    <Typography component="div">
+                      <div className="flex items-center justify-between w-full">
+                        <span className="bg-gray-200 rounded text-2xl font-bold delius-swash-caps-regular">
+                          ToDo
+                        </span>
 
-                    {/* Show Date Here */}
-                    <div>{todo.date}</div>
-                  </div>
-                </Typography>
+                        {/* Show Date Here */}
+                        <div>{todo.date}</div>
+                      </div>
+                    </Typography>
 
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  className={
-                    todo.completed ? "line-through text-green-700" : ""
-                  }
-                >
-                  {todo.text}
-                </Typography>
-
-                {/* Bottom Row */}
-                <div className="flex items-center justify-between mt-4">
-                  {/* EDIT + DELETE */}
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outlined"
-                      color="success"
-                      size="small"
-                      onClick={() => openEditModal(index)}
+                    <div
+                      color="text.secondary"
+                      className={`
+    ${todo.completed ? "line-through text-red-700" : "text-black"}
+    text-sm sm:text-base md:text-lg lg:text-xl h-16 mt-2 overflow-y-auto
+  `}
                     >
-                      Edit
-                    </Button>
+                      {todo.text}
+                    </div>
 
-                    <Button
-                      variant="outlined"
-                      color="error"
-                      size="small"
-                      onClick={() => openDeleteModal(index)}
-                    >
-                      Delete
-                    </Button>
-                  </div>
+                    <div className="flex items-center justify-between mt-4">
+                      <div className="flex gap-2">
+                        <Button
+                          variant="outlined"
+                          color="success"
+                          size="small"
+                          onClick={() => openEditModal(index)}
+                        >
+                          Edit
+                        </Button>
 
-                  {/* DONE + CHECKBOX */}
-                  <div className="flex items-center gap-1 font-bold text-green-800">
-                    DONE
-                    <Checkbox
-                      {...label}
-                      checked={todo.completed}
-                      onChange={() => toggleComplete(index)}
-                      color="success"
-                    />
-                  </div>
+                        <Button
+                          variant="outlined"
+                          color="error"
+                          size="small"
+                          onClick={() => openDeleteModal(index)}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+
+                      <div className="flex items-center gap-1 font-bold text-green-800">
+                        DONE
+                        <Checkbox
+                          {...label}
+                          checked={todo.completed}
+                          onChange={() => toggleComplete(index)}
+                          color="success"
+                        />
+                      </div>
+                    </div>
+                  </CardContent>
                 </div>
-              </CardContent>
+              </Card>
             </div>
-          </Card></div>
-        ))}
-      </div>
-      }
-      
-      
+          ))}
+        </div>
+      )}
 
-      {/* EDIT MODAL */}
       {openEdit && (
         <div className="fixed inset-0  backdrop-blur-sm flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg w-[330px] h-60 shadow-lg">
@@ -155,7 +149,6 @@ const ToDoList = () => {
         </div>
       )}
 
-      {/* DELETE MODAL */}
       {openDelete && (
         <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg h-60 w-[330px] shadow-lg">
