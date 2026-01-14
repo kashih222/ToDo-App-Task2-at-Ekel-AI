@@ -8,7 +8,7 @@ const App = () => {
       <Navbar />
       <div className="w-full  flex flex-col items-center gap-10 mt-[100px]">
         <h1 className="text-center text-4xl font-bold mt-8 uppercase px-10 major-mono-display-regular ">
-          Wellcome To My Smartest <span className="text-green-900 font-bold text-6xl">ToDO</span> App
+          Wellcome To My <span className="text-green-900 font-bold text-6xl">ToDO</span> App
         </h1>
         
         

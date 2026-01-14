@@ -14,17 +14,7 @@ const ToDoList = () => {
   const context = useContext(Context);
   if (!context) return null;
 
-  const {
-    todos,
-    updateTodo,
-    deleteTodo,
-    toggleComplete,
-    openEdit,
-    setOpenEdit,
-    open,
-    openDelete, 
-    setOpenDelete
-  } = context;
+  const { todos, updateTodo, deleteTodo, toggleComplete, openEdit, setOpenEdit, open, openDelete,  setOpenDelete} = context;
 
   const openEditModal = (index: number) => {
     setSelectedIndex(index);
@@ -73,11 +63,7 @@ const ToDoList = () => {
 
                     <div
                       color="text.secondary"
-                      className={`
-    ${todo.completed ? "line-through text-red-700" : "text-black"}
-    text-sm sm:text-base md:text-lg lg:text-xl h-16 mt-2 overflow-y-auto
-  `}
-                    >
+                      className={` ${todo.completed ? "line-through text-red-700" : "text-black"} text-sm sm:text-base md:text-lg lg:text-xl h-16 mt-2 overflow-y-auto`} >
                       {todo.text}
                     </div>
 

@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 
 const ToDoInput = () => {
   const context = useContext(Context);
-  if (!context) return null;
 
+  if (!context) return null;
   const { input, setInput, openEdit, openDelete } = context;
 
    const handleSubmit = () => {

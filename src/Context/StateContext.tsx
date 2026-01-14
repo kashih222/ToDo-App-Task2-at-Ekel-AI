@@ -22,25 +22,21 @@ interface ContextProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   openDelete: boolean;
   setOpenDelete: React.Dispatch<React.SetStateAction<boolean>>;
-  
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const Context = createContext<ContextProps | null>(null);
 
 const StateContext = ({ children }: { children: ReactNode }) => {
-
   const [todos, setTodos] = useState<TodoItem[]>(() => {
     const stored = localStorage.getItem("todos");
     return stored ? JSON.parse(stored) : [];
   });
 
   const [input, setInput] = useState("");
-    const [openEdit, setOpenEdit] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
 
-    const [open, setOpen] = useState(false);
-    const [openDelete, setOpenDelete] = useState(false);
-
+  const [open, setOpen] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -48,7 +44,8 @@ const StateContext = ({ children }: { children: ReactNode }) => {
 
   const addTodo = (text: string) => {
     const now = new Date();
-    const dateString = now.toLocaleDateString() + " " + now.toLocaleTimeString();
+    const dateString =
+      now.toLocaleDateString() + " " + now.toLocaleTimeString();
 
     const newTodo: TodoItem = {
       text,
@@ -79,23 +76,7 @@ const StateContext = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <Context.Provider
-      value={{
-        todos,
-        addTodo,
-        updateTodo,
-        deleteTodo,
-        toggleComplete,
-        input,
-        setInput,
-        openEdit, 
-        setOpenEdit,
-        open,
-        setOpen,
-        openDelete, 
-        setOpenDelete
-      }}
-    >
+    <Context.Provider value={{ todos, addTodo, updateTodo, deleteTodo, toggleComplete, input, setInput, openEdit, setOpenEdit, open, setOpen, openDelete, setOpenDelete}} >
       {children}
     </Context.Provider>
   );
